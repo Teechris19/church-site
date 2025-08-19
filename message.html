@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/vendor/aos/aos.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <style>
+        .navbar {
+            background: linear-gradient(to right, #4f46e5, #143399) !important;
+            height: 85px;
+        }
+        .main-content {
+          flex-grow: 1;
+          margin-top: 150px;
+          /* border: 2px solid red; */
+        } 
+    </style>
+</head>
+
+<body style="background-color: rgba(238, 238, 238, 0.761);">
+    <nav class="navbar navbar-expand-md custom-navbar fixed-top">
+        <div class="container-fluid">
+            <img src="Img/doxa.PNG" alt="logo" class="logo">
+
+            <!-- Large screen nav links -->
+            <div class="collapse navbar-collapse d-none d-md-flex justify-content-end">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="message.html">Message</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about_us.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Location</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Believers Class</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Need a Ride</a></li>
+                </ul>
+            </div>
+
+            <!-- Mobile toggle -->
+            <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNav" aria-controls="offcanvasNav">
+                <i class="bi bi-list text-white" style="font-size: 1.8rem;"></i>
+            </button>
+        </div>
+    </nav>
+    <script>
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.custom-navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+    <!-- Offcanvas menu -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title text-white" id="offcanvasNavLabel">Doxa Commission Global</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav">
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="message.html">Message</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="about_us.html">About</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="cell.html">Cell</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="event.html">Event</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="#">Location</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="#">Believers Class</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="#">Need a Ride</a></li>
+                </div>
+
+            </ul>
+        </div>
+    </div>
+
+    <main class="main-con main-content">
+        <section>
+            <h2 class="section-title">Featured Message</h2>
+            <div class="featured-message">
+                <div class="featured-image-wrapper">
+                    <!-- Placeholder image for the featured message speaker/topic -->
+                    <img src="https://placehold.co/300x200/4f46e5/ffffff?text=Featured+Message"
+                        alt="Featured Message Image" class="featured-image">
+                </div>
+                <div class="featured-content">
+                    <span class="featured-tag">New Release</span>
+                    <h3 class="featured-title">Unlocking Your Divine Potential</h3>
+                    <p class="featured-meta">Pastor John Doe | November 10, 2024 | Series: Kingdom Principles</p>
+                    <p class="featured-description">
+                        Discover the powerful truths that activate your God-given potential and empower you to live a
+                        life of purpose and impact. This message will transform your perspective and ignite your faith
+                        for greater exploits.
+                    </p>
+                    <a href="https://example.com/featured-message" target="_blank" class="listen-button">
+                        <i class="fas fa-play-circle"></i> Listen Now
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="categories-section">
+            <h2 class="section-title">Browse by Category</h2>
+            <div class="category-buttons">
+                <button class="category-button active" data-category="all">All Messages</button>
+                <button class="category-button" data-category="faith">Faith</button>
+                <button class="category-button" data-category="healing">Healing</button>
+                <button class="category-button" data-category="purpose">Purpose</button>
+                <button class="category-button" data-category="finances">Finances</button>
+                <button class="category-button" data-category="relationships">Relationships</button>
+                <button class="category-button" data-category="prayer">Prayer</button>
+                <button class="category-button" data-category="prophecy">Prophecy</button>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">All Messages</h2>
+            <div class="message-list" id="messageList">
+                <!-- Message Item 1 -->
+                <div class="message-item" data-category="faith">
+                    <h3>The Power of Forgiveness</h3>
+                    <p class="meta">Pastor John Doe | October 27, 2024</p>
+                    <p class="description">
+                        Learn how releasing forgiveness can unlock blessings and bring healing to your life. A powerful
+                        message on grace and freedom.
+                    </p>
+                    <a href="https://example.com/message1" target="_blank" class="listen-link">Listen Now</a>
+                </div>
+                <!-- Message Item 2 -->
+                <div class="message-item" data-category="healing">
+                    <h3>Walking in Divine Favor</h3>
+                    <p class="meta">Pastor Jane Smith | October 20, 2024</p>
+                    <p class="description">
+                        Understand what divine favor truly means and how to activate it in every area of your life for
+                        supernatural breakthroughs.
+                    </p>
+                    <a href="https://example.com/message2" target="_blank" class="listen-link">Listen Now</a>
+                </div>
+                <!-- Message Item 3 -->
+                <div class="message-item" data-category="purpose">
+                    <h3>Understanding Your Purpose</h3>
+                    <p class="meta">Guest Speaker Rev. Mark | October 13, 2024</p>
+                    <p class="description">
+                        Unlock the blueprint of your life as you discover God's unique purpose for you and how to walk
+                        in it daily.
+                    </p>
+                    <a href="https://example.com/message3" target="_blank" class="listen-link">Listen Now</a>
+                </div>
+                <!-- Message Item 4 -->
+                <div class="message-item" data-category="faith">
+                    <h3>Faith That Moves Mountains</h3>
+                    <p class="meta">Pastor John Doe | October 6, 2024</p>
+                    <p class="description">
+                        A foundational teaching on building unshakeable faith that overcomes every obstacle and brings
+                        God's promises to pass.
+                    </p>
+                    <a href="https://example.com/message4" target="_blank" class="listen-link">Listen Now</a>
+                </div>
+                <!-- Message Item 5 -->
+                <div class="message-item" data-category="relationships">
+                    <h3>The Joy of the Lord</h3>
+                    <p class="meta">Pastor Jane Smith | September 29, 2024</p>
+                    <p class="description">
+                        Experience the uncontainable joy that comes from a deep relationship with God, even in
+                        challenging times.
+                    </p>
+                    <a href="https://example.com/message5" target="_blank" class="listen-link">Listen Now</a>
+                </div>
+                <!-- Message Item 6 -->
+                <div class="message-item" data-category="purpose">
+                    <h3>Living a Victorious Life</h3>
+                    <p class="meta">Pastor John Doe | September 22, 2024</p>
+                    <p class="description">
+                        Learn practical steps to walk in victory over sin, sickness, and every challenge the enemy
+                        throws your way.
+                    </p>
+                    <a href="https://example.com/message6" target="_blank" class="listen-link">Listen Now</a>
+                </div>
+                <!-- Add more messages as needed -->
+                <div class="message-item" data-category="finances">
+                    <h3>Principles of Financial Breakthrough</h3>
+                    <p class="meta">Pastor Jane Smith | September 15, 2024</p>
+                    <p class="description">
+                        Discover biblical principles that lead to financial freedom and abundance, enabling you to be a
+                        blessing.
+                    </p>
+                    <a href="https://example.com/message7" target="_blank" class="listen-link">Listen Now</a>
+                </div>
+                <div class="message-item" data-category="prayer">
+                    <h3>The Power of Consistent Prayer</h3>
+                    <p class="meta">Guest Speaker Rev. Mark | September 8, 2024</p>
+                    <p class="description">
+                        Unlock the secrets to a powerful and effective prayer life that brings about tangible results.
+                    </p>
+                    <a href="https://example.com/message8" target="_blank" class="listen-link">Listen Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h3>Never Miss a Message!</h3>
+            <p>
+                Stay updated with the latest sermons, teachings, and special events from Doxa Church. Subscribe to our
+                podcast or newsletter today!
+            </p>
+            <a href="https://t.me/DcGlobal2" target="_blank" class="subscribe-button">
+                Subscribe Now <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+
+        <div class="row mx-2">
+
+            <div class="footer-content-con row mx-2">
+                <div class="footer-content col-lg-3">
+                    <!-- <img src="Img/doxa.PNG"> -->
+                    <h2>Doxa commissin Global</h2>
+                    <h4>Bringing nation into God's glory world</h3>
+                        <div class="footer-info">
+                            <p>
+                                <i class="fa-solid fa-location-dot"></i>129 Goldie, Adjacent amika
+                                utuk, Calabar, Cross River State, Nigeria.
+                            </p>
+                            <p><i class="fa-solid fa-phone"></i>+234 [Your Phone Number]</p>
+                            <p>
+                                <i class="fa-regular fa-envelope"></i>
+                                <a href="mailto:info@doxachurch.org">info@doxachurch.org</a>
+                            </p>
+                        </div>
+                </div>
+
+                <div class="footer-content col-lg-3">
+                    <h2>Sunday Glory Life service</h2>
+                    <p>7am, 8:30am, 10am and 4pm</p>
+                    <h4>Thursday Glory Experience</h4>
+                    <p>5:30pm</p>
+                </div>
+
+                <div class="footer-content col-lg-3">
+                    <h2>Quick Links</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="messages.html">Messages</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="map.html">Location</a></li>
+                        <li><a href="believers_class.html">Believers Class</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-content newsletter col-lg-3">
+                    <h3 class=>Stay Connected</h3>
+                    <p></p>Subscribe to our newsletter for updates and spiritual insights.</p>
+                    <form id="newsletter-form">
+                        <input type="email" id="newsletter-email" placeholder="Your email address" required>
+                        <button type="submit">
+                            Subscribe
+                        </button>
+                    </form>
+                    <div class="footer-icons-wrapper">
+                        <a href="https://www.facebook.com/DoxaCommissionGlobal/" aria-label="Facebook"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/doxa_commission/?hl=en" aria-label="Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/discover/doxa-commission-global" aria-label="TikTok"><i
+                                class="fab fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com/channel/UCZtReUAxK3S6qBKnV5G6PTw" aria-label="YouTube"><i
+                                class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                    </div>
+                    <p style="color: rgb(204, 198, 198); text-align: center; margin-top: 8px;">Follow us for update
+                        and
+                        inspiration!</p>
+                </div>
+            </div>
+
+            <div class="break"></div>
+
+            <div class="footer-2">
+                <p>&copy; Copyright Doxa Commission Global 2025. All Right Reserved. Desinged and Developed by Doxa
+                    database
+                </p>
+            </div>
+
+        </div>
+
+    </footer>
+</body>
+
+</html>

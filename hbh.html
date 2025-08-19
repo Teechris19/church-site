@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sermon Website</title> <!-- Use the Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        /* Custom styles for the player bar to ensure it stays at the bottom */
+        .audio-player-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+        }
+
+        /* Custom styling for the volume slider track and thumb */
+        input[type="range"]::-webkit-slider-runnable-track {
+            background: #4b5563;
+            /* Tailwind gray-600 */
+            border-radius: 9999px;
+            height: 4px;
+        }
+
+        input[type="range"]::-moz-range-track {
+            background: #4b5563;
+            border-radius: 9999px;
+            height: 4px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 14px;
+            width: 14px;
+            background-color: #f87171;
+            /* Tailwind red-400 */
+            border-radius: 50%;
+            margin-top: -5px;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            height: 14px;
+            width: 14px;
+            background-color: #f87171;
+            border-radius: 50%;
+            border: none;
+        }
+
+        /* Custom styles for the seek bar track and thumb */
+        #seek-bar {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        #seek-bar::-webkit-slider-runnable-track {
+            background: #e5e7eb;
+            /* A lighter gray for the track */
+            border-radius: 9999px;
+            height: 6px;
+            /* Slightly thicker track for easier interaction */
+        }
+
+        #seek-bar::-moz-range-track {
+            background: #e5e7eb;
+            border-radius: 9999px;
+            height: 6px;
+        }
+
+        #seek-bar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 14px;
+            width: 14px;
+            background-color: #f87171;
+            border-radius: 50%;
+            margin-top: -4px;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+        }
+
+        #seek-bar::-moz-range-thumb {
+            height: 14px;
+            width: 14px;
+            background-color: #f87171;
+            border-radius: 50%;
+            border: none;
+        }
+
+        /* Add a transition for the player bar to make it slide in smoothly */
+        .audio-player-bar.hidden {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        .audio-player-bar.visible {
+            transform: translateY(0);
+            opacity: 1;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        }
+
+        /* Style for the overlay play button */
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .sermon-card:hover .play-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen"> <!-- Main content area -->
+    <main class="flex-grow p-8 pb-32"> <!-- Header with "Latest Sermons" and "View All" -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-900">Latest Sermons</h1> <button
+                class="text-sm font-semibold text-red-500 rounded-full px-4 py-2 border border-red-500"> View All
+                Sermons </button>
+        </div> <!-- List for sermon cards -->
+        <div class="space-y-4"> <!-- Sermon List Item 1: Bandhitz (Rebirth) -->
+            <div id="sermon-card-1"
+                class="sermon-card group flex items-start bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer"
+                data-title="Bandhitz (Rebirth)" data-artist="Unknown Artist"
+                data-audio-src="__file_url__('C:\Users\USER\Documents\00-WEB DEV\0001DOXA\fresh-start\Samantha-Ebert-Flowers-Intimate-Version-(CeeNaija.com).mp3')">
+                <div class="flex-shrink-0 w-24 h-24 sm:w-32 sm:h-32 rounded-lg overflow-hidden relative"> <img
+                        src="https://placehold.co/300x300/000000/FFFFFF?text=Bandhitz+(Rebirth)"
+                        alt="Sermon thumbnail for Bandhitz (Rebirth)" class="w-full h-full object-cover">
+                    <div class="play-overlay rounded-lg"> <svg class="h-10 w-10 text-white" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.147A1 1 0 008 8v4a1 1 0 001.555.853l3.618-2a1 1 0 000-1.706l-3.618-2z"
+                                clip-rule="evenodd" />
+                        </svg> </div>
+                </div>
+                <div class="ml-4 flex-grow">
+                    <h2 class="text-lg md:text-xl font-bold text-gray-900">Bandhitz (Rebirth)</h2>
+                    <p class="text-xs md:text-sm text-gray-500 mt-1">This is a track titled 'Bandhitz (Rebirth)'
+                        uploaded by the user.</p>
+                    <div class="flex flex-wrap items-center text-gray-400 text-[0.6rem] sm:text-xs mt-2 space-x-4">
+                        <div class="flex items-center"> <svg class="h-3 w-3 mr-1" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+                            </svg> <span>Unknown Artist</span> </div>
+                        <div class="flex items-center"> <svg class="h-3 w-3 mr-1" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                    clip-rule="evenodd" />
+                            </svg> <span>Aug 16, 2025</span> </div>
+                    </div>
+                </div>
+            </div> <!-- Sermon List Item 2: Don't Escape, Engage -->
+            <div id="sermon-card-2"
+                class="sermon-card group flex items-start bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer"
+                data-title="Don't Escape, Engage" data-artist="Dr. Flourish Peters"
+                data-audio-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                <div class="flex-shrink-0 w-24 h-24 sm:w-32 sm:h-32 rounded-lg overflow-hidden relative"> <img
+                        src="https://placehold.co/300x300/000000/FFFFFF?text=Don't+Escape,+Engage"
+                        alt="Sermon thumbnail for Don't Escape, Engage" class="w-full h-full object-cover">
+                    <div class="play-overlay rounded-lg"> <svg class="h-10 w-10 text-white" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.147A1 1 0 008 8v4a1 1 0 001.555.853l3.618-2a1 1 0 000-1.706l-3.618-2z"
+                                clip-rule="evenodd" />
+                        </svg> </div>
+                    <div
+                        class="absolute top-1 right-1 bg-red-500 text-white text-[0.6rem] font-bold px-2 py-1 rounded-full">
+                        Featured</div>
+                </div>
+                <div class="ml-4 flex-grow">
+                    <h2 class="text-lg md:text-xl font-bold text-gray-900">Don't Escape, Engage</h2>
+                    <p class="text-xs md:text-sm text-gray-500 mt-1">In this revelatory teaching, Dr. Flourish Peters
+                        challenges the escapist mindset often associated...</p>
+                    <div class="flex flex-wrap items-center text-gray-400 text-[0.6rem] sm:text-xs mt-2 space-x-4">
+                        <div class="flex items-center"> <svg class="h-3 w-3 mr-1" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+                            </svg> <span>Dr. Flourish Peters</span> </div>
+                        <div class="flex items-center"> <svg class="h-3 w-3 mr-1" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                    clip-rule="evenodd" />
+                            </svg> <span>Jun 23, 2025</span> </div>
+                    </div>
+                </div>
+            </div> <!-- Sermon List Item 3: One Man -->
+            <div id="sermon-card-3"
+                class="sermon-card group flex items-start bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer"
+                data-title="One Man 2" data-artist="Pastor Lame Olubaj"
+                data-audio-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3">
+                <div class="flex-shrink-0 w-24 h-24 sm:w-32 sm:h-32 rounded-lg overflow-hidden relative"> <img
+                        src="https://placehold.co/300x300/000000/FFFFFF?text=One+Man" alt="Sermon thumbnail for One Man"
+                        class="w-full h-full object-cover">
+                    <div class="play-overlay rounded-lg"> <svg class="h-10 w-10 text-white" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.147A1 1 0 008 8v4a1 1 0 001.555.853l3.618-2a1 1 0 000-1.706l-3.618-2z"
+                                clip-rule="evenodd" />
+                        </svg> </div>
+                    <div
+                        class="absolute top-1 right-1 bg-red-500 text-white text-[0.6rem] font-bold px-2 py-1 rounded-full">
+                        Featured</div>
+                </div>
+                <div class="ml-4 flex-grow">
+                    <h2 class="text-lg md:text-xl font-bold text-gray-900">One Man 2</h2>
+                    <p class="text-xs md:text-sm text-gray-500 mt-1">One man by Pastor Lame Olubaj</p>
+                    <div class="flex flex-wrap items-center text-gray-400 text-[0.6rem] sm:text-xs mt-2 space-x-4">
+                        <div class="flex items-center"> <svg class="h-3 w-3 mr-1" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+                            </svg> <span>Pastor Lame Olubaj</span> </div>
+                        <div class="flex items-center"> <svg class="h-3 w-3 mr-1" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                    clip-rule="evenodd" />
+                            </svg> <span>Jun 22, 2025</span> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main> <!-- Persistent audio player bar at the bottom, hidden by default -->
+    <div id="audio-player-bar"
+        class="audio-player-bar hidden flex flex-col items-center justify-between bg-gray-800 text-white py-4 px-6 md:px-12 rounded-t-2xl shadow-xl">
+        <!-- Main player row -->
+        <div class="flex items-center justify-between w-full"> <!-- Left Section: Album Art and Info -->
+            <div class="flex-shrink-0 flex items-center w-1/4">
+                <div id="player-album-art"
+                    class="h-12 w-12 bg-gray-700 rounded-lg overflow-hidden mr-3 hidden sm:block"> <img
+                        src="https://placehold.co/48x48/2d3748/ffffff" alt="Album Art"
+                        class="w-full h-full object-cover"> </div>
+                <div class="flex flex-col truncate"> <span id="player-title" class="font-bold text-sm truncate">Select a
+                        Sermon</span> <span id="player-artist" class="text-gray-400 text-xs mt-1 truncate">--</span>
+                </div>
+            </div> <!-- Center Section: Playback Controls -->
+            <div class="flex-grow flex justify-center items-center space-x-4 md:space-x-8 w-1/2"> <button id="prev-btn"
+                    class="text-gray-400 hover:text-white transition duration-200"> <!-- Previous icon --> <svg
+                        class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M13.633 6.945A1 1 0 0012 8v4a1 1 0 001.633.853l3.618-2a1 1 0 000-1.706l-3.618-2zM4 8a1 1 0 000 2h1V8H4z" />
+                    </svg> </button> <button id="play-pause-btn"
+                    class="text-gray-400 hover:text-white transition duration-200"> <!-- Play/Pause icons --> <svg
+                        id="play-icon" class="h-8 w-8" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.147A1 1 0 008 8v4a1 1 0 001.555.853l3.618-2a1 1 0 000-1.706l-3.618-2z" />
+                    </svg> <svg id="pause-icon" class="h-8 w-8 hidden" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1zM13 7a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" />
+                    </svg> </button> <button id="next-btn"
+                    class="text-gray-400 hover:text-white transition duration-200"> <!-- Next icon --> <svg
+                        class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.147A1 1 0 008 8v4a1 1 0 001.555.853l3.618-2a1 1 0 000-1.706l-3.618-2z" />
+                    </svg> </button> </div> <!-- Right Section: Time, Volume and Cancel -->
+            <div class="flex-shrink-0 flex items-center justify-end space-x-4 w-1/4">
+                <div class="flex items-center"> <svg class="h-5 w-5 mr-2 text-gray-400" fill="currentColor"
+                        viewBox="0 0 20 20">
+                        <path
+                            d="M7 11.5c.34-.111.666-.239.99-.38l.01-.005a1.002 1.002 0 011.01-1.625l4.636-2.583A1 1 0 0115 7.5v5a1 1 0 01-1.555.853l-4.637-2.583a1.001 1.001 0 01-1.01-1.625l-.01-.005zM15 16a1 1 0 00.555.853l3.618 2A1 1 0 0020 18.5V2.5a1 1 0 00-1.827-.577l-3.618 2a1 1 0 00-.555.853v11.724z" />
+                    </svg> <input id="volume-slider" type="range" min="0" max="1" step="0.01" value="1"> </div>
+                <!-- Cancel Button --> <button id="close-player-btn"
+                    class="text-gray-400 hover:text-white transition duration-200"> <svg class="h-6 w-6"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd" />
+                    </svg> </button>
+            </div>
+        </div> <!-- Seek bar and time display row -->
+        <div class="flex items-center w-full mt-2 space-x-2"> <span id="current-time"
+                class="text-xs text-gray-400 w-12 text-right">0:00</span> <input id="seek-bar" type="range" min="0"
+                max="100" value="0" step="0.1"> <span id="duration" class="text-xs text-gray-400 w-12">--:--</span>
+        </div>
+    </div> <!-- Audio element to control playback --> <audio id="player-audio" src=""></audio>
+    <script> // Get all relevant DOM elements const audioPlayer = document.getElementById('player-audio'); const playPauseBtn = document.getElementById('play-pause-btn'); const playIcon = document.getElementById('play-icon'); const pauseIcon = document.getElementById('pause-icon'); const playerTitle = document.getElementById('player-title'); const playerArtist = document.getElementById('player-artist'); const playerAlbumArt = document.getElementById('player-album-art').querySelector('img'); const volumeSlider = document.getElementById('volume-slider'); const sermonCards = document.querySelectorAll('.sermon-card'); const currentTimeEl = document.getElementById('current-time'); const durationEl = document.getElementById('duration'); const audioPlayerBar = document.getElementById('audio-player-bar'); const seekBar = document.getElementById('seek-bar'); const closePlayerBtn = document.getElementById('close-player-btn'); let currentSermonIndex = -1; // Function to format time in minutes:seconds function formatTime(seconds) { const min = Math.floor(seconds / 60); const sec = Math.floor(seconds % 60); return ${min}:${sec < 10 ? '0' : ''}${sec}; } // Play/Pause button functionality playPauseBtn.addEventListener('click', () => { if (audioPlayer.paused) { if (audioPlayer.src) { audioPlayer.play(); } } else { audioPlayer.pause(); } }); // Update icons on play/pause events audioPlayer.addEventListener('play', () => { playIcon.classList.add('hidden'); pauseIcon.classList.remove('hidden'); }); audioPlayer.addEventListener('pause', () => { playIcon.classList.remove('hidden'); pauseIcon.classList.add('hidden'); }); // Update the current time display and seek bar as the audio plays audioPlayer.addEventListener('timeupdate', () => { currentTimeEl.textContent = formatTime(audioPlayer.currentTime); // Only update the seek bar if the user isn't actively dragging it if (!isSeeking) { const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100; seekBar.value = progress; } }); // Update the total duration when the audio loads metadata audioPlayer.addEventListener('loadedmetadata', () => { durationEl.textContent = formatTime(audioPlayer.duration); seekBar.max = audioPlayer.duration; // Set the max value of the seek bar to the duration }); // Add click event listeners to each sermon card sermonCards.forEach((card, index) => { card.addEventListener('click', () => { const title = card.dataset.title; const artist = card.dataset.artist; const audioSrc = card.dataset.audioSrc; // Show the audio player bar when a card is clicked audioPlayerBar.classList.remove('hidden'); audioPlayerBar.classList.add('visible'); // Update the player bar with the new sermon's info playerTitle.textContent = title; playerArtist.textContent = artist; // Update the audio source and play audioPlayer.src = audioSrc; audioPlayer.play(); // Update the album art (using a placeholder for now) playerAlbumArt.src = https://placehold.co/48x48/2d3748/ffffff?text=${encodeURIComponent(title)}; currentSermonIndex = index; }); }); // Next button functionality document.getElementById('next-btn').addEventListener('click', () => { if (currentSermonIndex !== -1 && currentSermonIndex < sermonCards.length - 1) { sermonCards[currentSermonIndex + 1].click(); } else if (currentSermonIndex === sermonCards.length - 1) { // Loop back to the first sermon sermonCards[0].click(); } }); // Previous button functionality document.getElementById('prev-btn').addEventListener('click', () => { if (currentSermonIndex > 0) { sermonCards[currentSermonIndex - 1].click(); } else if (currentSermonIndex === 0) { // Loop back to the last sermon sermonCards[sermonCards.length - 1].click(); } }); // Volume slider functionality volumeSlider.addEventListener('input', (event) => { audioPlayer.volume = event.target.value; }); // Close button functionality closePlayerBtn.addEventListener('click', () => { audioPlayer.pause(); audioPlayerBar.classList.add('hidden'); }); // Flag to prevent the timeupdate listener from interfering with user dragging let isSeeking = false; // Seek bar functionality seekBar.addEventListener('mousedown', () => { isSeeking = true; }); seekBar.addEventListener('mouseup', () => { isSeeking = false; }); seekBar.addEventListener('input', () => { // Update the current time of the audio player based on the seek bar value audioPlayer.currentTime = seekBar.value; }); </script>
+</body>

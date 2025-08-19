@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Church Website</title>
+
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/vendor/aos/aos.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <style>
+        /* General Body and Card Styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .navbar {
+            background: linear-gradient(to right, #4f46e5, #143399) !important;
+            height: 100px;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            margin-top: 90px;
+            /* border: 2px solid red; */
+        }
+
+        /* Main container for a slightly wider layout on large screens */
+        .container {
+            max-width: 1200px;
+        }
+
+        .card-container {
+            transition: all 0.4s cubic-bezier(0.2, 0.5, 0.1, 1);
+            border: 1px solid #e0e0e0;
+            /* Softer, subtle border */
+            border-radius: 8px;
+            /* Slightly less rounded corners */
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            /* Subtle shadow */
+            height: 100%;
+            /* Ensure card itself fills the column height */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-container:hover {
+            /* transform: translateY(-8px); */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Image and Play Button Container */
+        .image-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.2, 0.5, 0.1, 1);
+        }
+
+        /* Hover effect: Scale up the image */
+        .card-container:hover .card-img {
+            transform: scale(1.1);
+        }
+
+        /* Play button styling */
+        .play-button-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 64px;
+            height: 64px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid #fff;
+        }
+
+        .play-button-overlay i {
+            font-size: 1.8rem;
+            color: #1a1a1a;
+        }
+
+        /* Hover effect: Show the play button */
+        .card-container:hover .play-button-overlay {
+            opacity: 1;
+        }
+
+        /* Card Body Content Styling */
+        .card-body {
+            padding: 1.25rem;
+            background-color: #ffffff;
+            border-radius: 0 0 8px 8px;
+            display: flex;
+            /* Enable flexbox for card body */
+            flex-direction: column;
+            /* Stack children vertically */
+            flex-grow: 1;
+            /* Allow card body to grow and fill space */
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #555;
+            margin-bottom: 1rem;
+            /* Truncate text to two lines with ellipsis */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-grow: 1;
+            /* Allow text to grow and fill available space */
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #888;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            color: #666;
+        }
+
+        .detail-item i {
+            margin-right: 8px;
+            color: #007bff;
+        }
+
+        .detail-item span {
+            font-weight: 500;
+        }
+
+        /* Search bar styling */
+        .search-bar {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 8px 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+        }
+
+        .search-bar input {
+            border: none;
+            box-shadow: none;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* Responsive Columns with custom breakpoint logic */
+        /* @media (min-width: 1200px) {
+            .col-lg-3 {
+                flex: 0 0 auto;
+                width: 25%;
+            }
+        }
+        @media (max-width: 1199.98px) {
+            .col-lg-4 {
+                flex: 0 0 auto;
+                width: 33.33333333%;
+            }
+        } */
+        @media (max-width: 991.98px) {
+            .col-md-6 {
+                flex: 0 0 auto;
+                width: 50%;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .col-sm-12 {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md custom-navbar fixed-top">
+        <div class="container-fluid">
+            <img src="Img/doxa.PNG" alt="logo" class="logo">
+
+            <!-- Large screen nav links -->
+            <div class="collapse navbar-collapse d-none d-md-flex justify-content-end">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="message.html">Message</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about_us.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cell.html">Cell</a></li>
+                    <li class="nav-item"><a class="nav-link" href="event.html">Event</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Location</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Believers Class</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Need a Ride</a></li>
+                </ul>
+            </div>
+
+            <!-- Mobile toggle -->
+            <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNav" aria-controls="offcanvasNav">
+                <i class="bi bi-list text-white" style="font-size: 1.8rem;"></i>
+            </button>
+        </div>
+    </nav>
+    <script>
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.custom-navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+    <!-- Offcanvas menu -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title text-white" id="offcanvasNavLabel">Doxa Commission Global</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav">
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="message.html">Message</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="about_us.html">About</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="cell.html">Cell</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="event.html">Event</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="#">Location</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="#">Believers Class</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="#">Need a Ride</a></li>
+                </div>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="py-5" style="width: 80%; margin: 0 auto;">
+            <!-- Header with back button, title, and search bar -->
+            <div class="mb-4">
+                <a href="sermon.html" class="text-decoration-none text-dark fw-bold d-flex align-items-center mb-3">
+                    <i class="fas fa-arrow-left me-2"></i> Back to Sermons
+                </a>
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <div class="me-md-3">
+                        <h2 class="fw-bold mb-0">All Sermons</h2>
+                        <p class="text-muted">Browse all our sermons and listen to life-transforming messages</p>
+                    </div>
+                    <div class="input-group search-bar flex-grow-1" style="max-width: 400px;">
+                        <span class="input-group-text bg-transparent border-0"><i class="fas fa-search"></i></span>
+                        <input type="search" class="form-control" placeholder="Search sermons..."
+                            aria-label="Search sermons">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Card Grid Section -->
+            <div class="row align-items-stretch">
+
+                <!-- Card 1 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/5A67D8/ffffff?text=Lesson+1" class="card-img"
+                                alt="Card Image 1">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Stay Woke (No Shaking)</h5>
+                            <p class="card-text">In "Stay Woke (No Shaking)", Dr. Flourish Peters teaches that true
+                                alertness in the faith means...</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Dr. Flourish Peters</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>108:58</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Aug 10, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/F56565/ffffff?text=Lesson+2" class="card-img"
+                                alt="Card Image 2">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Don't Escape, Engage</h5>
+                            <p class="card-text">In this revelatory teaching, Dr. Flourish Peters challenges the
+                                escapist
+                                mindset often associated with Christian faith, urging believers to actively engage with
+                                the
+                                world rather than withdraw from it. He emphasizes that a life of faith is a life of
+                                influence and impact, not isolation.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Dr. Flourish Peters</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>90:41</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Jun 23, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/48BB78/ffffff?text=Lesson+3" class="card-img"
+                                alt="Card Image 3">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">One Man 2</h5>
+                            <p class="card-text">One man by Pastor Lanre Olubaji</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Pastor Lanre Olubaji</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>189:41</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Jun 22, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/667EEA/ffffff?text=Lesson+4" class="card-img"
+                                alt="Card Image 4">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">The Power of Gratitude</h5>
+                            <p class="card-text">A powerful message on how cultivating a grateful heart can transform
+                                your
+                                life and perspective.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Mark Wilson</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>45:30</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Jul 1, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/ED8936/ffffff?text=Lesson+5" class="card-img"
+                                alt="Card Image 5">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Finding Your Purpose</h5>
+                            <p class="card-text">This sermon helps you navigate the journey of discovering your true
+                                calling
+                                and living a purpose-driven life.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Sarah Adams</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>58:12</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Jul 15, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/ECC94B/ffffff?text=Lesson+6" class="card-img"
+                                alt="Card Image 6">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Overcoming Adversity</h5>
+                            <p class="card-text">A message of hope and resilience, exploring biblical principles for
+                                overcoming life's challenges.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>David Chen</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>65:05</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Jul 22, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/9F7AEA/ffffff?text=Lesson+7" class="card-img"
+                                alt="Card Image 7">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Love Your Neighbor</h5>
+                            <p class="card-text">An essential teaching on the importance of community and showing love
+                                to
+                                those around us.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Jessica Lee</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>48:20</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Jul 29, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/4FD1C5/ffffff?text=Lesson+8" class="card-img"
+                                alt="Card Image 8">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">The Joy of Giving</h5>
+                            <p class="card-text">Explore the spiritual and personal rewards of generosity and selfless
+                                giving in this inspiring message.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Kevin Carter</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>52:15</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Aug 5, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/A0AEC0/ffffff?text=Lesson+9" class="card-img"
+                                alt="Card Image 9">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Finding Strength in Faith</h5>
+                            <p class="card-text">Discover how to draw strength from your beliefs during times of
+                                uncertainty
+                                and trial.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Ryan Miller</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>60:00</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Aug 12, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 10 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/F6AD55/ffffff?text=Lesson+10" class="card-img"
+                                alt="Card Image 10">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Living a Life of Purpose</h5>
+                            <p class="card-text">This sermon explores the practical steps you can take to align your
+                                daily
+                                life with God's purpose for you.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Sophia Lopez</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>55:40</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Aug 19, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 11 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/4299E1/ffffff?text=Lesson+11" class="card-img"
+                                alt="Card Image 11">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">The Discipline of Prayer</h5>
+                            <p class="card-text">A deep dive into the importance and power of consistent, heartfelt
+                                prayer
+                                in a believer's life.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Ethan White</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>72:10</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Aug 26, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 12 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/38B2AC/ffffff?text=Lesson+12" class="card-img"
+                                alt="Card Image 12">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">The Fruit of the Spirit</h5>
+                            <p class="card-text">An examination of the qualities that the Holy Spirit cultivates in the
+                                lives of Christians.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Olivia Davis</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>68:30</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Sep 2, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 13 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/F6E05E/ffffff?text=Lesson+13" class="card-img"
+                                alt="Card Image 13">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">How to Study Your Bible</h5>
+                            <p class="card-text">Practical tips and methods for a deeper, more meaningful study of
+                                scripture.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Jacob Brown</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>78:55</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Sep 9, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 14 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/9F7AEA/ffffff?text=Lesson+14" class="card-img"
+                                alt="Card Image 14">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Grace in Action</h5>
+                            <p class="card-text">An inspiring look at what it means to live out God's grace in your
+                                daily
+                                interactions with others.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Chloe Adams</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>61:45</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Sep 16, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 15 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/4FD1C5/ffffff?text=Lesson+15" class="card-img"
+                                alt="Card Image 15">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Forgiveness and Freedom</h5>
+                            <p class="card-text">Understanding the profound liberation that comes from forgiving others
+                                and
+                                ourselves.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Benjamin Clark</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>50:20</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Sep 23, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 16 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/81E6D9/ffffff?text=Lesson+16" class="card-img"
+                                alt="Card Image 16">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">The Call to Serve</h5>
+                            <p class="card-text">A powerful message on the importance of service and how it deepens our
+                                connection to God and community.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Ava Wilson</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>67:10</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Sep 30, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 17 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/B2F5EA/ffffff?text=Lesson+17" class="card-img"
+                                alt="Card Image 17">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Finding Peace in Christ</h5>
+                            <p class="card-text">A sermon that guides you on how to find and maintain inner peace amidst
+                                the
+                                chaos of the world.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Noah Taylor</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>49:35</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Oct 7, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 18 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/FBD38D/ffffff?text=Lesson+18" class="card-img"
+                                alt="Card Image 18">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">The Power of Community</h5>
+                            <p class="card-text">Learn about the vital role of fellowship and community in strengthening
+                                your faith journey.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Isabella Martinez</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>63:25</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Oct 14, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 19 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/9AE6B4/ffffff?text=Lesson+19" class="card-img"
+                                alt="Card Image 19">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Trusting God's Plan</h5>
+                            <p class="card-text">A comforting message on how to surrender control and place your
+                                complete
+                                trust in God's perfect plan.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Liam Thompson</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>56:18</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Oct 21, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 20 -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card card-container">
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/400x200/4299E1/ffffff?text=Lesson+20" class="card-img"
+                                alt="Card Image 20">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">The Joy of Obedience</h5>
+                            <p class="card-text">Discover the true joy and fulfillment that comes from living a life of
+                                obedience to God's word.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-circle"></i> <span>Mia Carter</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i> <span>70:45</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i> <span>Oct 28, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+
+        <div class="row mx-2">
+
+            <div class="footer-content-con row mx-2">
+                <div class="footer-content col-lg-3">
+                    <!-- <img src="Img/doxa.PNG"> -->
+                    <h2>Doxa commissin Global</h2>
+                    <h4>Bringing nation into God's glory world</h3>
+                        <div class="footer-info">
+                            <p>
+                                <i class="fa-solid fa-location-dot"></i>129 Goldie, Adjacent amika
+                                utuk, Calabar, Cross River State, Nigeria.
+                            </p>
+                            <p><i class="fa-solid fa-phone"></i>+234 [Your Phone Number]</p>
+                            <p>
+                                <i class="fa-regular fa-envelope"></i>
+                                <a href="mailto:info@doxachurch.org">info@doxachurch.org</a>
+                            </p>
+                        </div>
+                </div>
+
+                <div class="footer-content col-lg-3">
+                    <h2>Sunday Glory Life service</h2>
+                    <p>7am, 8:30am, 10am and 4pm</p>
+                    <h4>Thursday Glory Experience</h4>
+                    <p>5:30pm</p>
+                </div>
+
+                <div class="footer-content col-lg-3">
+                    <h2>Quick Links</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="messages.html">Messages</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="map.html">Location</a></li>
+                        <li><a href="believers_class.html">Believers Class</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-content newsletter col-lg-3">
+                    <h3 class=>Stay Connected</h3>
+                    <p></p>Subscribe to our newsletter for updates and spiritual insights.</p>
+                    <form id="newsletter-form">
+                        <input type="email" id="newsletter-email" placeholder="Your email address" required>
+                        <button type="submit">
+                            Subscribe
+                        </button>
+                    </form>
+                    <div class="footer-icons-wrapper">
+                        <a href="https://www.facebook.com/DoxaCommissionGlobal/" aria-label="Facebook"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/doxa_commission/?hl=en" aria-label="Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/discover/doxa-commission-global" aria-label="TikTok"><i
+                                class="fab fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com/channel/UCZtReUAxK3S6qBKnV5G6PTw" aria-label="YouTube"><i
+                                class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                    </div>
+                    <p style="color: rgb(204, 198, 198); text-align: center; margin-top: 8px;">Follow us for update
+                        and
+                        inspiration!</p>
+                </div>
+            </div>
+
+            <div class="break"></div>
+
+            <div class="footer-2">
+                <p>&copy; Copyright Doxa Commission Global 2025. All Right Reserved. Desinged and Developed by Doxa
+                    database
+                </p>
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

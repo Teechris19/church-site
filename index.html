@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/vendor/aos/aos.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+
+</head>
+
+<body style="background-color: rgba(238, 238, 238, 0.761);">
+    <nav class="navbar navbar-expand-md custom-navbar fixed-top">
+        <div class="container-fluid">
+            <img src="Img/doxa.PNG" alt="logo" class="logo">
+
+            <!-- Large screen nav links -->
+            <div class="collapse navbar-collapse d-none d-md-flex justify-content-end">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="message.html">Message</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about_us.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cell.html">Cell</a></li>
+                    <li class="nav-item"><a class="nav-link" href="event.html">Event</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Location</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Believers Class</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Need a Ride</a></li>
+                </ul>
+            </div>
+
+            <!-- Mobile toggle -->
+            <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNav" aria-controls="offcanvasNav">
+                <i class="bi bi-list text-white" style="font-size: 1.8rem;"></i>
+            </button>
+        </div>
+    </nav>
+    <script>
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.custom-navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+    <!-- Offcanvas menu -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title text-white" id="offcanvasNavLabel">Doxa Commission Global</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav">
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="message.html">Message</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="about_us.html">About</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="cell.html">Cell</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="event.html">Event</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="#">Location</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="#">Believers Class</a></li>
+                </div>
+                <div class="navcon">
+                    <li class="nav-item"><a class="nav-link" href="#">Need a Ride</a></li>
+                </div>
+
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+
+            <div class="carousel-item active" style="background-image: url('/Img/IMG-20250130-WA0014.jpg');">
+                <div class="carousel-caption">
+                    <h1>Welcome to Our World</h1>
+                    <p>Experience beauty like never before.</p>
+                </div>
+            </div>
+
+            <div class="carousel-item" style="background-image: url('/Img/1731874997821.jpg');">
+                <div class="carousel-caption">
+                    <h1>Adventure Awaits</h1>
+                    <p>Discover new horizons every day.</p>
+                </div>
+            </div>
+
+            <div class="carousel-item" style="background-image: url('Img/IMG-20250101-WA0021.jpg');">
+                <div class="carousel-caption">
+                    <h1>Nature's Touch</h1>
+                    <p>Breathe in the freshness of the earth.</p>
+                </div>
+            </div>
+
+            <div class="carousel-item" style="background-image: url('/Img/5a4aa24e566c4c88a9120f553a4a8435.jpg');">
+                <div class="carousel-caption">
+                    <h1>Urban Dreams</h1>
+                    <p>City lights and endless possibilities.</p>
+                </div>
+            </div>
+
+            <div class="carousel-item" style="background-image: url('/Img/IMG-20250130-WA0018.jpg');">
+                <div class="carousel-caption">
+                    <h1>Peaceful Escapes</h1>
+                    <p>Find your calm in quiet places.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <script>
+        const carousel = document.querySelector('#heroCarousel');
+        const carouselInstance = new bootstrap.Carousel(carousel, {
+            interval: 3000,
+            ride: 'carousel',
+            wrap: true
+        });
+
+        carousel.addEventListener('mouseenter', () => carouselInstance.pause());
+        carousel.addEventListener('mouseleave', () => carouselInstance.cycle());
+    </script>
+
+    <div class="container mt-4">
+        <section class="countdown-section px-lg-5 py-5">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="service-cards">
+                            <div class="section-title">Sunday Service</div>
+                            <div id="sunday-countdown" class="countdown text-center"></div>
+                            <p class="mt-3 text-center">Sundays: 7:00AM, 8:30AM, 10:00AM & 4:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="service-cards">
+                            <div class="section-title">Thursday Service</div>
+                            <div id="thursday-countdown" class="countdown text-center"></div>
+                            <p class="mt-3 text-center">Thursdays @ 5:30 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="card shadow mb-4 mt-4 p-3">
+            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+            <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo eius repudiandae
+                consequuntur pariatur vel fugit!</p>
+            <div class="row g-2">
+                <div class="col-md-4 col-lg-4 p-3 card shadow">
+                    <h5 class="card-title">Column 1</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a
+                        ante.</p>
+                </div>
+                <div class="col-md-4 p-3 col-lg-4 card  shadow">
+                    <h5 class="card-title">Column 2</h5>
+                    <p class="card-text">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        minim veniam.</p>
+                </div>
+                <div class="col-md-4 p-3 col-lg-4 card  shadow">
+                    <h5 class="card-title">Column 3</h5>
+                    <p class="card-text">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+    <section class="container ">
+        <div class="card text-start shadow mb-4 mt-3 p-3">
+            <div class="card-group gap-2">
+                <div class="card m-3">
+                    <img class="card-img-top" src="holder.js/100x180/" alt="Card image cap" />
+                    <div class="card-body">
+                        <h4 class="card-title">Title</h4>
+                        <p class="card-text">Text</p>
+                    </div>
+                </div>
+                <div class="card m-3">
+                    <img class="card-img-top" src="holder.js/100x180/" alt="Card image cap" />
+                    <div class="card-body">
+                        <h4 class="card-title">Title</h4>
+                        <p class="card-text">Text</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-footer text-muted d-flex justify-content-center align-items-center">
+                <!-- Modal trigger button -->
+                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalId">
+                    Share your testiomny
+                </button>
+
+
+            </div>
+
+        </div>
+    </section>
+    <section class="container mt-3 mb-3">
+        <div class="card p-3">
+            <div class="row">
+                <div class="col-lg-6">
+                    <section id="contact">
+                        <h2 class="section-title">Contact Us</h2>
+                        <div class="contact-grid">
+                            <div class="contact-info">
+                                <p>
+                                    <i class="fa-solid fa-location-dot"></i>129 Goldie, Adjacent amika
+                                    utuk, Calabar, Cross River State, Nigeria.
+                                </p>
+                                <p><i class="fa-solid fa-phone"></i>+234 [Your Phone Number]</p>
+                                <p>
+                                    <i class="fa-regular fa-envelope"></i>
+                                    <a href="mailto:info@doxachurch.org">info@doxachurch.org</a>
+                                </p>
+                                <p><strong>Service Times:</strong></p>
+                                <ul class="service-times-list">
+                                    <p><b>Sunday we hold four Glory Life services</b></p>
+                                    <li><b>Sundays:</b> 7am, 8:30am, 10am and 4pm</li>
+                                    <p><b>Glory Exprience</b></p>
+                                    <li><b>Thursday:</b> 5:30 PM</li>
+                                </ul>
+                            </div>
+                            <div class="contact-form-wrapper" id="message">
+                            </div>
+
+                        </div>
+                </div>
+                <div class="col-lg-6">
+                    <h3>Send Us a Message</h3>
+                    <form action="">
+                        <div class="row">
+                            <label for="" class="form-label">Name:</label>
+                            <div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control " name="formId1" id="formId1"
+                                        placeholder="" />
+                                    <label for="formId1">Name</label>
+                                </div>
+
+                            </div>
+                            <label for="" class="form-label">Email:</label>
+                            <div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control " name="formId1" id="formId1"
+                                        placeholder="" />
+                                    <label for="formId1">Email</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Message</label>
+                            <textarea class="form-control" name="" id="" rows="3"></textarea>
+                        </div>
+                        <input type="submit" value="contact" class="btn btn-sm"
+                            style="background: var(--accent-color); color: white;">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer class="main-footer">
+
+        <div class="row mx-2">
+
+            <div class="footer-content-con row mx-2">
+                <div class="footer-content col-lg-3 col-md-6">
+                    <!-- <img src="Img/doxa.PNG"> -->
+                    <h2>Doxa commissin Global</h2>
+                    <h4>Bringing nation into God's glory world</h3>
+                        <div class="footer-info">
+                            <p>
+                                <i class="fa-solid fa-location-dot"></i>129 Goldie, Adjacent amika
+                                utuk, Calabar, Cross River State, Nigeria.
+                            </p>
+                            <p><i class="fa-solid fa-phone"></i>+234 [Your Phone Number]</p>
+                            <p>
+                                <i class="fa-regular fa-envelope"></i>
+                                <a href="mailto:info@doxachurch.org">info@doxachurch.org</a>
+                            </p>
+                        </div>
+                </div>
+
+                <div class="footer-content col-lg-3 col-md-6">
+                    <h2>Sunday Glory Life service</h2>
+                    <p>7am, 8:30am, 10am and 4pm</p>
+                    <h4>Thursday Glory Experience</h4>
+                    <p>5:30pm</p>
+                </div>
+
+                <div class="footer-content col-lg-3 col-md-6">
+                    <h2>Quick Links</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="messages.html">Messages</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="map.html">Location</a></li>
+                        <li><a href="believers_class.html">Believers Class</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-content newsletter col-lg-3 col-md-6">
+                    <h3 class=>Stay Connected</h3>
+                    <p></p>Subscribe to our newsletter for updates and spiritual insights.</p>
+                    <form id="newsletter-form">
+                        <input type="email" id="newsletter-email" placeholder="Your email address" required>
+                        <button type="submit">
+                            Subscribe
+                        </button>
+                    </form>
+                    <div class="footer-icons-wrapper">
+                        <a href="https://www.facebook.com/DoxaCommissionGlobal/" aria-label="Facebook"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/doxa_commission/?hl=en" aria-label="Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/discover/doxa-commission-global" aria-label="TikTok"><i
+                                class="fab fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com/channel/UCZtReUAxK3S6qBKnV5G6PTw" aria-label="YouTube"><i
+                                class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                    </div>
+                    <p style="color: rgb(204, 198, 198); text-align: center; margin-top: 8px;">Follow us for update
+                        and
+                        inspiration!</p>
+                </div>
+            </div>
+
+            <div class="break"></div>
+
+            <div class="footer-2">
+                <p>&copy; Copyright Doxa Commission Global 2025. All Right Reserved. Desinged and Developed by Doxa
+                    database
+                </p>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- All the modals  -->
+
+    <!-- Modal Body -->
+    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+    <!-- <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" -->
+    <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title section-title" id="modalTitleId">
+                        Victory Report Form
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="name" class="form-label">Your Name (Optional)</label>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control " name="formId1" id="formId1"
+                                        placeholder="" />
+                                    <label for="formId1">Name</label>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="Emai" class="form-label">Your Email</label>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="formId1" id="formId1"
+                                        placeholder="" />
+                                    <label for="formId1">Email</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="testimony" class="form-label">testimony</label>
+                            <textarea class="form-control" name="" id="" rows="3"></textarea>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">Submit Testimony</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- Optional: Place to the bottom of scripts -->
+    <script>
+        const myModal = new bootstrap.Modal(
+            document.getElementById("modalId"),
+            options,
+        );
+    </script>
+
+    <!-- COUNTDOWN -->
+    <script>
+        function getNextSundayService() {
+            const now = new Date();
+            const sundayMorning = new Date();
+            sundayMorning.setDate(now.getDate() + ((0 + 7 - now.getDay()) % 7));
+            sundayMorning.setHours(8, 0, 0, 0);
+            const sundayEvening = new Date(sundayMorning);
+            sundayEvening.setHours(16, 0, 0, 0);
+
+            if (now < sundayMorning) return sundayMorning;
+            if (now >= sundayMorning && now < new Date(sundayMorning.getTime() + 5 * 60 * 60 * 1000)) {
+                // Service ongoing until 1 PM, show countdown to evening
+                return sundayEvening;
+            }
+            if (now < sundayEvening) return sundayEvening;
+
+            // After evening service, go to next week's morning
+            sundayMorning.setDate(sundayMorning.getDate() + 7);
+            return sundayMorning;
+        }
+
+        function getNextOccurrence(dayOfWeek, hour, minute) {
+            const now = new Date();
+            let result = new Date();
+            result.setDate(now.getDate() + ((dayOfWeek + 7 - now.getDay()) % 7));
+            result.setHours(hour, minute, 0, 0);
+            if (result < now) result.setDate(result.getDate() + 7);
+            return result;
+        }
+
+        function updateCountdown(elementId, targetDate) {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById(elementId).textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        function startCountdowns() {
+            setInterval(() => {
+                updateCountdown('sunday-countdown', getNextSundayService());
+                updateCountdown('thursday-countdown', getNextOccurrence(4, 17, 30));
+            }, 1000);
+        }
+
+        startCountdowns();
+    </script>
+</body>
+
+</html>
